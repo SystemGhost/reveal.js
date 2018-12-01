@@ -30,6 +30,7 @@
       <!--1-->
       <section>
         <h2>SASS</h2>
+        <img data-src="img\Sass_Logo_Color.png" alt="Sass Logo">
       </section>
 
       <!--2-->
@@ -171,9 +172,6 @@
 
       <!--4-->
       <section>
-        <section>
-          <h2>Variables</h2>
-        </section>
 
         <section>
           <h2>Variables</h2>
@@ -251,13 +249,188 @@
       </section>
 
       <!--6-->
-      <section></section>
+      <section>
+
+        <section>
+          <h2>Directives</h2>
+          <p>@if</p>
+          <pre><code>
+  p {
+    @if 1 + 1 == 2 { border: 1px solid; }
+    @if 5 < 3 { border: 2px dotted; }
+    @if null { border: 3px double; }
+  }
+            </code></pre>
+          <pre class="fragment"><code>
+  p {
+    border: 1px solid;
+  }
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Directives</h2>
+          <p>@for</p>
+          <pre><code>
+  @for $i from 1 through 3 {
+    .item-#{$i} { width: 2em * $i; }
+  }
+          </code></pre>
+          <pre class="fragment"><code>
+  .item-1 { width: 2em; }
+  .item-2 { width: 4em; }
+  .item-3 { width: 6em; }
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Directives</h2>
+          <p>@each</p>
+          <pre><code>
+  @each $header, $size in (h1: 2em, h2: 1.5em, h3: 1.2em) {
+    #{$header} { 
+      font-size: $size;
+    }
+  }
+                </code></pre>
+          <pre class="fragment"><code>
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.2em; }
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Directives</h2>
+          <p>@while</p>
+          <pre><code>
+  $i: 6;
+
+  @while $i > 0 {
+    .item-#{$i} { width: 2em * $i; }
+    $i: $i — 2;
+  }
+          </code></pre>
+          <pre class="fragment"><code>
+  .item-6 { width: 12em; }
+  .item-4 { width: 8em; }
+  .item-2 { width: 4em; }
+          </code></pre>
+        </section>
+
+      </section>
 
       <!--7-->
-      <section></section>
+      <section>
+
+        <section>
+          <h2>Mixins</h2>
+          <p>@mixin, @include</p>
+          <pre><code>
+  @mixin large-text {
+    font: {
+      family: Arial;
+      size: 20px;
+      weight: bold;
+    }
+    color: #ff0000;
+  }
+  .page-title {
+    @include large-text;
+    padding: 4px;
+    margin-top: 10px;
+  }
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Mixins</h2>
+          <p>Results</p>
+          <pre><code>
+  .page-title {
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff0000;
+    padding: 4px;
+    margin-top: 10px;
+  }
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Compound mixins</h2>
+          <pre><code>
+  @mixin mixin-one{
+    color: red;
+  }
+  @mixin mixin-two{
+    width:20px;
+  }
+  .page-title {
+    @include mixin-one;
+    @include mixin-two;
+  }
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>variables in mixins</h2>
+          <pre><code>
+  $globel-prefixes:webkit moz ms o;
+  @mixin prefixer ($property,$value,$prefixes:null) {
+    @if $prefixes==null {
+      @each $prefix in $globel-prefixes {
+      -#{$prefix}-#{$property}: $value; }
+    } @else {
+      @each $prefix in $prefixes {
+      -#{$prefix}-#{$property}: $value; }
+    }
+    #{$property}: $value;
+  }
+  * {
+    @include prefixer(box-sizing,border-box);
+  }
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>variables in mixins</h2>
+          <p>Compiled into:</p>
+          <pre><code>
+  * {
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
+  }
+          </code></pre>
+        </section>
+
+      </section>
 
       <!--8-->
-      <section></section>
+      <section>
+        <h2>Functions</h2>
+        <pre><code>
+  $no-of-columns:12;
+  $gutter-width:2%;
+
+  @function get-column-width($i) {
+   @return (100% — ($no-of-columns/$i — 1) * $gutter-width) 
+   / $no-of-columns * $i;
+  }
+  .col-6 {
+    width:get-column-width(6);
+  }
+        </code></pre>
+        <pre class="fragment"><code>
+  .col-6 {
+    width: 49%;
+  }
+        </code></pre>
+      </section>
 
     </div>
   </div>

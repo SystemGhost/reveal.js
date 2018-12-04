@@ -109,24 +109,24 @@
 
         <section>
           <h2>& - parent</h2>
-          <p>SCSS</p>
+
           <pre><code>
-  #wrapper h1 {
-    width:20px;
-
-    &:hover {
-      width:25px;
-    }
-  }
-          </code></pre>
-
-          <pre class="fragment"><code>
   #wrapper h1 {
     width:20px;
   }
 
   #wrapper h1:hover{
     width:25px;
+  }
+          </code></pre>
+          <pre class="fragment"><code>
+
+  #wrapper h1 {
+    width:20px;
+
+    &:hover {
+      width:25px;
+    }
   }
           </code></pre>
         </section>
@@ -151,16 +151,6 @@
 
         <section>
           <h2>Imports</h2>
-          <p>Partial</p>
-          <pre><code>
-  @import “colors”; 
-
-  @import “utils/foo.scss”; 
-      </code> </pre>
-        </section>
-
-        <section>
-          <h2>Imports</h2>
           <p>Nested imports</p>
           <pre class="fragment"><code>
   .example {
@@ -178,6 +168,16 @@
     color: red;
   }
           </code></pre>
+        </section>
+
+        <section>
+          <h2>Imports</h2>
+          <p>Partial</p>
+          <pre><code>
+  @import “colors”; 
+
+  @import “utils/foo.scss”; 
+      </code> </pre>
         </section>
 
       </section>
